@@ -1,66 +1,65 @@
-{% extends "admin/base_site.html" %}
-{% load i18n static %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login</title>
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static "css/login.css" %}">
-{{ form.media }}
-{% endblock %}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="{% static 'otp-input.css' %}" />
+    </head>
+    <body>
+        <div class="main-content-container">
 
-{% block bodyclass %}{{ block.super }} login{% endblock %}
+          <div class="error-msg hidden" id="errmsg">
+            <i class="fa fa-times-circle"></i>
+            This is a error message.
+          </div>
 
-{% block usertools %}{% endblock %}
+          <div class="success-msg hidden" id="sucmsg">
+            <i class="fa fa-check"></i>
+            This is a success message.
+          </div>
+          
+            <div class="text-container">
 
-{% block nav-global %}{% endblock %}
 
-{% block nav-sidebar %}{% endblock %}
 
-{% block content_title %}{% endblock %}
+                <div class="font-h2-strong">Login</div>
+                <div class="font-text-large-1" id="messageInp">Enter your phone number</div>
+            
+            </div>
 
-{% block nav-breadcrumbs %}{% endblock %}
+            <div class="font-h2-strong">
+          {{ form.username }}
+            </div>
 
-{% block content %}
-{% if form.errors and not form.non_field_errors %}
-<p class="errornote">
-{% blocktranslate count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
-</p>
-{% endif %}
+            <div id="otp-inp" class="hidden">
+            <div id="otp-input" class="font-h2-strong">
+                <input class="font-h2-strong" placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
+                <input class="font-h2-strong" placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
+                <input class="font-h2-strong" placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
+                <input class="font-h2-strong" placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
+                <input class="font-h2-strong" placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
+                <input class="font-h2-strong" placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
+                <input id="otp-value" placeholder="_" type="hidden" name="otp" />
+            </div>
 
-{% if form.non_field_errors %}
-{% for error in form.non_field_errors %}
-<p class="errornote">
-    {{ error }}
-</p>
-{% endfor %}
-{% endif %}
+            <div class="font-h2-strong" id="countdown"></div>
+        
+          </div>
 
-<div id="content-main">
 
-{% if user.is_authenticated %}
-<p class="errornote">
-{% blocktranslate trimmed %}
-    You are authenticated as {{ username }}, but are not authorized to
-    access this page. Would you like to login to a different account?
-{% endblocktranslate %}
-</p>
-{% endif %}
 
-<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-  <div class="form-row">
-    {{ form.username.errors }}
-    {{ form.username.label_tag }} {{ form.username }}
-  </div>
-  <div class="form-row">
-    <input type="hidden" name="next" value="{{ next }}">
-  </div>
-  {% url 'admin_password_reset' as password_reset_url %}
-  {% if password_reset_url %}
-  <div class="password-reset-link">
-    <a href="{{ password_reset_url }}">{% translate 'Forgotten your password or username?' %}</a>
-  </div>
-  {% endif %}
-  <div class="submit-row">
-    <input type="submit" value="{% translate 'Log in' %}">
-  </div>
-</form>
+            <button id="submit">Submit</button>
 
-</div>
-{% endblock %}
+            <!-- <button class="primary-button continue-button">Continue</button> -->
+        </div>
+        <script src="{% static 'otp-input.js' %}"></script>
+    </body>
+</html>
