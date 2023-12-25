@@ -5,6 +5,7 @@ class CustomModelBackend(ModelBackend):
     """Log in to Django without providing a password.
     """
     def authenticate(self, request, username):
+        print('backe'*10)
         User = get_user_model()
         try:
             user = User.objects.get(phone_number=username)

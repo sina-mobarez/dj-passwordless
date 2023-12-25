@@ -1,11 +1,14 @@
 body,
-html {
+html, form {
     height: 100%;
     width: 100%;
     background-color: #faf9f6;
     display: flex;
 }
-
+.form {
+    display: contents;
+    justify-content: center;
+}
 .font-h2-strong {
     color: #141414;
     font-weight: 400;
@@ -89,6 +92,15 @@ button {
     display: none;
 }
 
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
 .success-msg {
     color: #270;
     background-color: #DFF2BF;
@@ -107,14 +119,6 @@ button {
     animation: fadeIn 0.5s ease-in-out; /
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 
   #countdown {
     display: flex;

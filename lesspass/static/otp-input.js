@@ -5,13 +5,14 @@ window.addEventListener("load", function () {
     const OTPValueContainer = document.querySelector("#otp-value");
 
     const continueButton = document.querySelector("#submit");
+    const subBtn = document.getElementById('sub');
     const message = document.getElementById('messageInp');
-    const inputNumber = this.document.getElementById('id_username');
+    const inputNumber = document.getElementById('id_username');
+    const formLogin = document.getElementById('form-login');
 
     continueButton.addEventListener("click", (e) => {
         updateValue(inputs);
         SendCode(inputNumber);
-        showOtpAndDisalbeInp();
 
     });
 
@@ -35,13 +36,15 @@ window.addEventListener("load", function () {
             if (response.ok) {
                 successmsg.classList.remove('hidden');
                 successmsg.innerText = 'OTP Code sent to your Number successfully.'
+                formLogin.classList.add('form');
                 startCountDown();
                 setTimeout(function(){
                     successmsg.classList.add('hidden')
                 }, 3000)
+                showOtpAndDisalbeInp();
             } else {
                 errormsg.classList.remove('hidden');
-                errormsg.innerText = 'Sorry some thing went wrong, Try again Later.'
+                errormsg.innerText = 'Enter a valid phone number like 9xxxxxxxxx.'
                 setTimeout(function(){
                     errormsg.classList.add('hidden')
                 }, 3000)
@@ -54,7 +57,7 @@ window.addEventListener("load", function () {
 
     }
     const startCountDown = () => {
-        var countdownTime = 10; // 3 minutes
+        var countdownTime = 180; // 3 minutes
 
         // Get the countdown element by its ID
         var countdownElement = document.getElementById("countdown");
@@ -96,9 +99,11 @@ window.addEventListener("load", function () {
     const showOtpAndDisalbeInp = () => {
         const otp = document.getElementById('otp-inp')
         otp.classList.remove('hidden');
-        inputNumber.placeholder = otp.value;
+        inputNumber.placeholder = inputNumber.value;
         inputNumber.disabled = true;
         message.innerText = 'Enter Your OTP Code'
+        continueButton.classList.add('hidden')
+        subBtn.classList.remove('hidden');
 
     }
     // Focus first input

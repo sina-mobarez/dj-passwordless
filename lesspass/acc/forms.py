@@ -63,6 +63,7 @@ class CustomAuthenticationForm(forms.Form):
 
     def clean(self):
         username = self.cleaned_data.get("username")
+        print(username*10)
 
         if username is not None:
             self.user_cache = authenticate(
