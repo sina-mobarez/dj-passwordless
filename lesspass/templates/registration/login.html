@@ -37,10 +37,11 @@
       <div class="font-text-large-1" id="messageInp">Enter your phone number</div>
 
     </div>
-    <form action="{{ app_path }}" method="post" class="font-h2-strong form" id="form-login">
-      {% csrf_token %}
+
+
       <div class="font-h2-strong">
-        {{ form.username }}
+
+        <input type="text" name="username" autofocus="" class="font-h2-strong" autocapitalize="none" autocomplete="username" maxlength="10" required="" id="id_username">
       </div>
 
       <div id="otp-inp" class="hidden">
@@ -61,14 +62,20 @@
         </div>
 
         <div class="font-h2-strong" id="countdown"></div>
-        <div> <button type="submit" id="sub" class="hidden">Login</button> </div>
+
 
       </div>
+
+    <form action="{{ app_path }}" method="post" class="hidden" id="orginalForm">
+        {% csrf_token %}
+        {{ form.username }}
+      <div> <button type="submit" id="sub" class="hidden">Login</button> </div>
     </form>
 
 
-
     <button id="submit">Submit</button>
+    <button id="sendForm" class="hidden">Login</button>
+
 
     <!-- <button class="primary-button continue-button">Continue</button> -->
   </div>

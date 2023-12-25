@@ -33,7 +33,7 @@ class CustomAuthenticationForm(forms.Form):
     username logins.
     """
     
-    username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, "class": "font-h2-strong"}))
+    username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, "id": "usrnme"}))
 
 
     error_messages = {

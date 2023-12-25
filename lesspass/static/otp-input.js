@@ -3,12 +3,13 @@ window.addEventListener("load", function () {
     const OTPContainer = document.querySelector("#otp-input");
 
     const OTPValueContainer = document.querySelector("#otp-value");
-
+    const usernameField = document.querySelector("#usrnme");
     const continueButton = document.querySelector("#submit");
-    const subBtn = document.getElementById('sub');
+    const form = document.getElementById('orginalForm');
+    const subBtn = document.getElementById('sendForm');
     const message = document.getElementById('messageInp');
     const inputNumber = document.getElementById('id_username');
-    const formLogin = document.getElementById('form-login');
+  
 
     continueButton.addEventListener("click", (e) => {
         updateValue(inputs);
@@ -36,12 +37,12 @@ window.addEventListener("load", function () {
             if (response.ok) {
                 successmsg.classList.remove('hidden');
                 successmsg.innerText = 'OTP Code sent to your Number successfully.'
-                formLogin.classList.add('form');
                 startCountDown();
                 setTimeout(function(){
                     successmsg.classList.add('hidden')
                 }, 3000)
                 showOtpAndDisalbeInp();
+                usernameField.value = inputNumber.value ;
             } else {
                 errormsg.classList.remove('hidden');
                 errormsg.innerText = 'Enter a valid phone number like 9xxxxxxxxx.'
@@ -104,7 +105,13 @@ window.addEventListener("load", function () {
         message.innerText = 'Enter Your OTP Code'
         continueButton.classList.add('hidden')
         subBtn.classList.remove('hidden');
+        subBtn.addEventListener('click', () => {
+            return sendFormFunc();
+        })
 
+    }
+    const sendFormFunc = () => {
+        form.submit()
     }
     // Focus first input
     const firstInput = OTPContainer.querySelector("input");
