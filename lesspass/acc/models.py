@@ -3,6 +3,7 @@ from django.contrib.auth.models import PermissionsMixin, BaseUserManager
 from django.core.validators import RegexValidator
 from django.apps import apps
 from .base_user import AbstractBaseUser
+import pyotp
 
 
 class CustomUserManager(BaseUserManager):
@@ -54,7 +55,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
     
     
-    def authenticate(self, otp):
+    def authenticate_otp_code(self, otp):
         """ This method authenticates the given otp"""
         provided_otp = 0
         try:
@@ -63,7 +64,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             return False
         #Here we are using Time Based OTP. The interval is 60 seconds.
         #otp must be provided within this interval or it's invalid
-        t = pyotp.TOTP(self.key, interval=300)
+        t = pyotp.TOTP(self.key, interval=180)
         return t.verify(provided_otp)    
     
 

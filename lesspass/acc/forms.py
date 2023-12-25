@@ -34,6 +34,7 @@ class CustomAuthenticationForm(forms.Form):
     """
     
     username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, "id": "usrnme"}))
+    otp_code = forms.CharField(max_length=6, widget=forms.TextInput(attrs={"id": "otpField"}))
 
 
     error_messages = {
@@ -63,11 +64,12 @@ class CustomAuthenticationForm(forms.Form):
 
     def clean(self):
         username = self.cleaned_data.get("username")
+        otp_code = self.cleaned_data.get("otp_code")
         print(username*10)
 
         if username is not None:
             self.user_cache = authenticate(
-                self.request, username=username
+                self.request, username=username, otp_code=otp_code
             )
             if self.user_cache is None:
                 raise self.get_invalid_login_error()

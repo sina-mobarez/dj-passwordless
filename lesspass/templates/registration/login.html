@@ -69,6 +69,7 @@
     <form action="{{ app_path }}" method="post" class="hidden" id="orginalForm">
         {% csrf_token %}
         {{ form.username }}
+        {{ form.otp_code }}
       <div> <button type="submit" id="sub" class="hidden">Login</button> </div>
     </form>
 
