@@ -139,5 +139,27 @@ AUTHENTICATION_BACKENDS = (
 
 
 CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
 broker_connection_retry = True
+
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename':  BASE_DIR / 'log/djangologfile.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
