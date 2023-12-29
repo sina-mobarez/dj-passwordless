@@ -8,3 +8,4 @@ class AccConfig(AppConfig):
 
     def ready(self):
         import acc.signals
+        import acc.tasks

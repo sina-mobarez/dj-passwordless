@@ -136,3 +136,8 @@ AUTHENTICATION_BACKENDS = (
     'acc.backends.CustomModelBackend',
 
 )
+
+
+CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+broker_connection_retry = True
