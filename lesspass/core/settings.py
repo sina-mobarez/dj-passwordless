@@ -163,3 +163,7 @@ LOGGING = {
         },
     },
 }
+
+
+PATTERN_KEY = 'owqidqmkm888lew'
+ACCESS_KEY = 'D1vHDvgSNI6f0lQm8XdVYdsnrv5Sl5yIp-h4HaLJPyo='
