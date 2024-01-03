@@ -3,7 +3,8 @@ from django.contrib.auth import get_user_model
 from multiprocessing import AuthenticationError
 
 class CustomModelBackend(ModelBackend):
-    """Log in to Django without providing a password.
+    """
+    Custom authentication backend for logging in users based on phone numbers and OTP codes.
     """
     def authenticate(self, request, username, otp_code):
         User = get_user_model()
@@ -15,6 +16,5 @@ class CustomModelBackend(ModelBackend):
                 else:
                     raise AuthenticationError('Your OTP code has expired.')
         except (User.DoesNotExist, AuthenticationError):
+            # User does not exist, authentication fails
             return None
-
-        

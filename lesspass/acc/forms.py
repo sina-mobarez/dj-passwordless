@@ -12,11 +12,6 @@ class UsernameField(forms.CharField):
     def to_python(self, value):
         value = super().to_python(value)
         if self.max_length is not None and len(value) > self.max_length:
-            # Normalization can increase the string length (e.g.
-            # "ﬀ" -> "ff", "½" -> "1⁄2") but cannot reduce it, so there is no
-            # point in normalizing invalid data. Moreover, Unicode
-            # normalization is very slow on Windows and can be a DoS attack
-            # vector.
             return value
         return unicodedata.normalize("NFKC", value)
 
@@ -36,20 +31,15 @@ class CustomAuthenticationForm(forms.Form):
     username = UsernameField(widget=forms.TextInput(attrs={"autofocus": True, "id": "usrnme"}))
     otp_code = forms.CharField(max_length=6, widget=forms.TextInput(attrs={"id": "otpField"}))
 
-
     error_messages = {
         "invalid_login": _(
             "Please enter a correct %(username)s. "
-            "fields may be case-sensitive."
+            "Fields may be case-sensitive."
         ),
         "inactive": _("This account is inactive."),
     }
 
     def __init__(self, request=None, *args, **kwargs):
-        """
-        The 'request' parameter is set for custom auth use by subclasses.
-        The form data comes in via the standard 'data' kwarg.
-        """
         self.request = request
         self.user_cache = None
         super().__init__(*args, **kwargs)
@@ -78,16 +68,6 @@ class CustomAuthenticationForm(forms.Form):
         return self.cleaned_data
 
     def confirm_login_allowed(self, user):
-        """
-        Controls whether the given User may log in. This is a policy setting,
-        independent of end-user authentication. This default behavior is to
-        allow login by active users, and reject login by inactive users.
-
-        If the given user cannot log in, this method should raise a
-        ``ValidationError``.
-
-        If the given user may log in, this method should return None.
-        """
         if not user.is_active:
             raise ValidationError(
                 self.error_messages["inactive"],
@@ -103,5 +83,3 @@ class CustomAuthenticationForm(forms.Form):
             code="invalid_login",
             params={"username": self.username_field.verbose_name},
         )
-        
-    

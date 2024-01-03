@@ -4,7 +4,7 @@ not in INSTALLED_APPS.
 """
 import unicodedata
 import warnings
-
+from django.apps import apps
 from django.conf import settings
 from django.db import models
 from django.utils.crypto import get_random_string, salted_hmac
@@ -48,6 +48,40 @@ class BaseUserManager(models.Manager):
         return self.get(**{self.model.USERNAME_FIELD: username})
 
 
+class CustomUserManager(BaseUserManager):
+    def _create_user(self, phone_number, **extra_fields):
+        """
+        Create and save a user with the given username, email, and password.
+        """
+        if not phone_number:
+            raise ValueError("The given phone must be set")
+        # Lookup the real model class from the global app registry so this
+        # manager method can be used in migrations. This is fine because
+        # managers are by definition working on the real model.
+        GlobalUserModel = apps.get_model(
+            self.model._meta.app_label, self.model._meta.object_name
+        )
+        user = self.model(phone_number=phone_number, **extra_fields)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, phone_number, **extra_fields):
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
+        return self._create_user(phone_number, **extra_fields)
+
+    def create_superuser(self, phone_number, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("is_superuser", True)
+
+        if not all(extra_fields.get(param, False) for param in ["is_staff", "is_active", "is_superuser"]):
+            raise ValueError(
+                "Superuser must have is_staff, is_active, and is_superuser set to True.")
+
+        return self._create_user(phone_number, **extra_fields)
+
+
 class AbstractBaseUser(models.Model):
 
     last_login = models.DateTimeField(_("last login"), blank=True, null=True)
@@ -59,7 +93,6 @@ class AbstractBaseUser(models.Model):
     # Stores the raw password if set_password() is called so that it can
     # be passed to password_changed() after the model is saved.
 
-
     class Meta:
         abstract = True
 
@@ -69,13 +102,13 @@ class AbstractBaseUser(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-
     def get_username(self):
         """Return the username for this User."""
         return getattr(self, self.USERNAME_FIELD)
 
     def clean(self):
-        setattr(self, self.USERNAME_FIELD, self.normalize_username(self.get_username()))
+        setattr(self, self.USERNAME_FIELD,
+                self.normalize_username(self.get_username()))
 
     def natural_key(self):
         return (self.get_username(),)
@@ -95,8 +128,6 @@ class AbstractBaseUser(models.Model):
         authenticated in templates.
         """
         return True
-
-
 
     def get_session_auth_hash(self):
         """
@@ -126,8 +157,4 @@ class AbstractBaseUser(models.Model):
 
     @classmethod
     def normalize_username(cls, username):
-        return (
-            unicodedata.normalize("NFKC", username)
-            if isinstance(username, str)
-            else username
-        )
+        return unicodedata.normalize("NFKC", username) if isinstance(username, str) else username
