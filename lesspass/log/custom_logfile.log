@@ -1,2 +1,36 @@
 [2024-01-03 12:48:47,788] [INFO] Celery is start succeeded
 [2024-01-03 12:49:06,630] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-04 01:06:44,318] [INFO] Celery is start succeeded
+[2024-01-04 01:07:16,531] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:47:12,514] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:48:50,002] [INFO] Celery is start succeeded
+[2024-01-07 06:48:56,919] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:48:57,714] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:48:57,714] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:48:59,452] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:48:59,721] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:48:59,722] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:50:41,904] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:50:42,342] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:50:42,342] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:52:55,366] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:52:56,136] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:52:56,136] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:57:40,665] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:57:41,292] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:57:41,292] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:58:29,855] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:58:30,110] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:58:30,110] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:58:51,600] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:58:51,873] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:58:51,874] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 06:59:40,734] [INFO] User created with phone number: 9876543210
+[2024-01-07 06:59:41,014] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 06:59:41,015] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 07:00:09,146] [INFO] User created with phone number: 9876543210
+[2024-01-07 07:00:09,398] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 07:00:09,398] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-07 07:00:21,870] [INFO] User created with phone number: 9876543210
+[2024-01-07 07:00:22,135] [ERROR] HTTPError handled => code: HTTPSConnectionPool(host='api2.ippanel.com', port=443): Max retries exceeded with url: /api/v1/sms/pattern/normal/send (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+[2024-01-07 07:00:22,135] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded

@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-wj8blupt@)k4vjj2yhb#!ys)a45vw0j5gd)letci68+gn(31bt"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', default=True)
 
 ALLOWED_HOSTS = []
 
@@ -135,9 +140,8 @@ LOGIN_URL = "/acc/login/"
 AUTHENTICATION_BACKENDS = ("acc.backends.CustomModelBackend",)
 
 
-CELERY_BROKER_URL = "pyamqp://guest@localhost//"
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-broker_connection_retry = True
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+broker_connection_retry = os.getenv('broker_connection_retry')
 
 
 LOGGING = {
@@ -160,5 +164,5 @@ LOGGING = {
 }
 
 
-PATTERN_KEY = "owqidqmkm888lew"
-ACCESS_KEY = "D1vHDvgSNI6f0lQm8XdVYdsnrv5Sl5yIp-h4HaLJPyo="
+PATTERN_KEY = os.getenv('PATTERN_KEY')
+ACCESS_KEY = os.getenv('ACCESS_KEY')
