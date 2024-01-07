@@ -1,0 +1,24 @@
+[2024-01-12 08:37:51,975] [INFO] Celery is start succeeded
+[2024-01-12 08:39:49,627] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-12 08:40:32,579] [INFO] User created with phone number: 9906947880
+[2024-01-12 08:40:33,375] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-01-20 18:51:31,828] [INFO] Celery is start succeeded
+[2024-01-20 18:56:05,061] [INFO] User created with phone number: 9126308144
+[2024-01-20 18:56:05,899] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-03-16 14:13:42,218] [INFO] Celery is start succeeded
+[2024-03-16 14:15:20,106] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 13:57:45,599] [INFO] Celery is start succeeded
+[2024-04-15 14:25:24,870] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 14:28:09,535] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 14:30:21,186] [INFO] Celery is start succeeded
+[2024-04-15 14:56:15,443] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 14:59:33,050] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:00:17,044] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:00:41,062] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:09:19,061] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:26:25,180] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:26:35,392] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:27:46,038] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:28:23,738] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:32:17,352] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded
+[2024-04-15 15:33:31,940] [INFO] Task acc.tasks.send_otp_to_phone_number_task succeeded

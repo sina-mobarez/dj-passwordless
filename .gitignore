@@ -1,4 +1,10 @@
 .env
 __pycache__/
 migrations/
+<<<<<<< HEAD
+=======
+/__pycache__
+/migrations
 *.sqlite3
+db.sqlite3
+>>>>>>> 57d8668 ([feat] create requirements file)
