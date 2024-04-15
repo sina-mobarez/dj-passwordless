@@ -1,4 +1,7 @@
 from django.contrib.auth.views import LoginView
+from django.contrib import messages
+from django.views.generic import TemplateView
+from django.urls import reverse_lazy
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -18,8 +21,12 @@ class CustomLoginView(LoginView):
     form_class = CustomAuthenticationForm
     authentication_form = None
     template_name = "registration/login.html"
-    redirect_authenticated_user = False
-    extra_context = None
+    success_url = reverse_lazy('landing-page')
+    redirect_authenticated_user = True
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Invalid otp code.')
+        return super().form_invalid(form)
 
 
 class GetCodeView(APIView):
@@ -58,3 +65,8 @@ class GetCodeView(APIView):
         send_otp_to_phone_number_task.delay(phone_number, otp_code)
 
         return Response({'message': 'OTP Code sent successfully.'}, status=status.HTTP_200_OK)
+
+
+
+class LandingPageView(TemplateView):
+    template_name = 'successful-login.html'

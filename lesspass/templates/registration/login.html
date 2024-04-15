@@ -19,6 +19,15 @@
 
   <div class="main-content-container">
 
+    {% if messages %}
+      {% for message in messages %}
+      <div class="error-msg" id="errmsg">
+        <i class="fa fa-times-circle"></i>
+        {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}
+
     <div class="error-msg hidden" id="errmsg">
       <i class="fa fa-times-circle"></i>
       This is a error message.

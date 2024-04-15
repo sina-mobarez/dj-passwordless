@@ -9,6 +9,19 @@ html, form {
     display: contents;
     justify-content: center;
 }
+
+.logout-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to full viewport height */
+}
+
+.logout-form {
+    text-align: center;
+}
+
+
 .font-h2-strong {
     color: #141414;
     font-weight: 400;

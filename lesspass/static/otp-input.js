@@ -129,14 +129,15 @@ window.addEventListener("load", function () {
     const SendCode = (number) =>{
         var successmsg = document.getElementById('sucmsg');
         var errormsg = document.getElementById('errmsg');
-        var url = 'http://127.0.0.1:8000/acc/get_code/';
+        var url = "{% url 'get-code' %}";
         var pstData = {
             "phone_number": number.value
         }
         var fetchOptions = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': cookies['csrftoken']
             },
             body: JSON.stringify(pstData) 
         }

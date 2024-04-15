@@ -7,4 +7,8 @@ migrations/
 /migrations
 *.sqlite3
 db.sqlite3
+<<<<<<< HEAD
 >>>>>>> 57d8668 ([feat] create requirements file)
+=======
+*.log
+>>>>>>> 42d2356 ([feat] add landing page for success login)
