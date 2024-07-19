@@ -13,4 +13,5 @@ def send_otp_to_phone_number_task(destination, otp):
     Returns:
         Any: The result of sending the OTP (you may customize the return type based on your needs).
     """
+    print(otp, '#######################################')
     return send_otp(destination, otp)

@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView
+from django.views.generic.edit import FormView
 from django.contrib import messages
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
+from django.contrib.auth import login
 
 from .forms import CustomAuthenticationForm
 from .serializers import GetPhoneNumberSerializer
@@ -14,16 +15,24 @@ from utils.get_code import generate_otp_code
 from core.logger import logger
 
 
-class CustomLoginView(LoginView):
+
+class CustomLoginView(FormView):
     """
     Custom login view using the CustomAuthenticationForm.
     """
+
     form_class = CustomAuthenticationForm
-    authentication_form = None
     template_name = "registration/login.html"
     success_url = reverse_lazy('landing-page')
-    redirect_authenticated_user = True
 
+    def form_valid(self, form):
+        phone = form.cleaned_data['username']
+        code = form.cleaned_data['otp_code']
+        user = get_user_model().objects.get(phone_number=phone)
+        if user:
+            login(self.request, user)
+        return super().form_valid(form)
+    
     def form_invalid(self, form):
         messages.error(self.request, 'Invalid otp code.')
         return super().form_invalid(form)

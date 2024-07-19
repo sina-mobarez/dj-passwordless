@@ -126,10 +126,16 @@ window.addEventListener("load", function () {
         input.addEventListener("focus", (e) => e.target.select());
     });
 
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+     
     const SendCode = (number) =>{
         var successmsg = document.getElementById('sucmsg');
         var errormsg = document.getElementById('errmsg');
-        var url = "{% url 'get-code' %}";
+        var url = "http://127.0.0.1:8000/acc/get_code/";
         var pstData = {
             "phone_number": number.value
         }
@@ -137,7 +143,7 @@ window.addEventListener("load", function () {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': cookies['csrftoken']
+                'X-CSRFToken': getCookie('csrftoken')
             },
             body: JSON.stringify(pstData) 
         }

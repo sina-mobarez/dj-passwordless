@@ -28,11 +28,6 @@
       {% endfor %}
     {% endif %}
 
-    <div class="error-msg hidden" id="errmsg">
-      <i class="fa fa-times-circle"></i>
-      This is a error message.
-    </div>
-
     <div class="success-msg hidden" id="sucmsg">
       <i class="fa fa-check"></i>
       This is a success message.
@@ -90,6 +85,18 @@
     <!-- <button class="primary-button continue-button">Continue</button> -->
   </div>
   <script src="{% static 'otp-input.js' %}"></script>
+  <script>
+        {% if messages %}
+
+        var errormsg = document.getElementById('errmsg');
+        setTimeout(function(){
+                    errormsg.classList.add('hidden')
+                }, 3000)
+                
+        {% endif %}
+  </script>
+
+  
 </body>
 
 </html>
