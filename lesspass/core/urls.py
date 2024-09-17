@@ -18,13 +18,10 @@ Including another URLconf
 from django.urls import path, include
 from acc.views import LandingPageView
 from acc.admin import admin_site
-from django.contrib.auth.views import LogoutView
-# from django.contrib import admin
+
 
 urlpatterns = [
-    # path("admin/", admin.site.urls),
-    path('admin/', admin_site.urls),
-    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
-    path('', LandingPageView.as_view(), name='landing-page'),
-    path('acc/', include('acc.urls'))
+    path("admin/", admin_site.urls),
+    path("", LandingPageView.as_view(), name="landing-page"),
+    path("api/", include("acc.urls")),
 ]

@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', default=True)
+DEBUG = os.getenv("DEBUG", default=True)
 
 ALLOWED_HOSTS = []
 
@@ -110,6 +110,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -136,34 +145,14 @@ AUTH_USER_MODEL = "acc.CustomUser"
 
 
 LOGIN_URL = "/acc/login/"
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
 
 AUTHENTICATION_BACKENDS = ("acc.backends.CustomModelBackend",)
 
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
-broker_connection_retry = os.getenv('broker_connection_retry')
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+broker_connection_retry = os.getenv("broker_connection_retry")
 
 
-# LOGGING = {
-#     "version": 1,
-#     "disable_existing_loggers": False,
-#     "handlers": {
-#         "file": {
-#             "level": "INFO",
-#             "class": "logging.FileHandler",
-#             "filename": BASE_DIR / "log/djangologfile.log",
-#         },
-#     },
-#     "loggers": {
-#         "django": {
-#             "handlers": ["file"],
-#             "level": "INFO",
-#             "propagate": True,
-#         },
-#     },
-# }
-
-
-PATTERN_KEY = os.getenv('PATTERN_KEY')
-ACCESS_KEY = os.getenv('ACCESS_KEY')
+PATTERN_KEY = os.getenv("PATTERN_KEY")
+ACCESS_KEY = os.getenv("ACCESS_KEY")

@@ -1,6 +1,5 @@
 import os
 import logging
-from pathlib import Path
 from core.settings import BASE_DIR
 
 # Ensure the directory for log files exists

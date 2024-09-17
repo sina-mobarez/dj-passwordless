@@ -12,15 +12,17 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """
 
     phone_regex = RegexValidator(
-        regex=r'^9\d{9}$',
-        message='Phone number must be entered in the format 9xxxxxxxxx. Up to 10 digits allowed.'
+        regex=r"^9\d{9}$",
+        message="Phone number must be entered in the format 9xxxxxxxxx. Up to 10 digits allowed.",
     )
-    phone_number = models.CharField(validators=[phone_regex], max_length=10, unique=True)
+    phone_number = models.CharField(
+        validators=[phone_regex], max_length=10, unique=True
+    )
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     key = models.CharField(max_length=100, unique=True, blank=True)
 
-    USERNAME_FIELD = 'phone_number'
+    USERNAME_FIELD = "phone_number"
 
     objects = CustomUserManager()
 
