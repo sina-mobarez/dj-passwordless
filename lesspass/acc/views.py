@@ -16,7 +16,7 @@ class LoginView(APIView):
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid():
             user = serializer.validated_data
             login(request, user)
             return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
@@ -67,7 +67,7 @@ class GetCodeView(APIView):
         # Generate OTP code and send it asynchronously
         otp_code = generate_otp_code(user)
         send_otp_to_phone_number_task.delay(phone_number, otp_code)
-
+        print("*" * 10, otp_code)
         return Response(
             {"message": "OTP Code sent successfully."}, status=status.HTTP_200_OK
         )

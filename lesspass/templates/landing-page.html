@@ -39,7 +39,30 @@
       class="relative min-h-screen flex flex-col justify-center bg-slate-50 overflow-hidden"
     >
       <div class="w-full max-w-6xl mx-auto px-4 md:px-6 py-24">
-        <div class="flex justify-center">
+
+        {% if user.is_authenticated %}
+        <div id="not-login" class="flex justify-center">
+          <div
+            class="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10 rounded-xl shadow"
+          >
+            <header class="mb-8">
+              <h1 class="text-2xl font-bold mb-1">WellCome</h1>
+              <p class="text-[15px] text-slate-500">
+                you logged in by this number <b>{{ user }}</b>
+              </p>
+              <p class="text-[15px] text-slate-500">
+                for logout you can use this link <a href="{% url 'logout' %}">logout</a>.
+              </p>
+            </header>
+            <div class="max-w-[260px] mx-auto mt-4">
+            </div>
+          </div>
+        </div>
+
+        {% else %}
+
+
+        <div id="code-page" class="flex justify-center hidden">
           <div
             class="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10 rounded-xl shadow"
           >
@@ -86,6 +109,7 @@
               <div class="max-w-[260px] mx-auto mt-4">
                 <button
                   type="submit"
+                  id="login-btn"
                   class="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors duration-150"
                 >
                   Login
@@ -101,51 +125,194 @@
               >
             </div>
           </div>
-
-          <div class="flex justify-center">
-            <div
-              class="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10 rounded-xl shadow"
-            >
-              <header class="mb-8">
-                <h1 class="text-2xl font-bold mb-1">You are logged in now</h1>
-                <p class="text-[15px] text-slate-500">
-                  for logout you can use below button.
-                </p>
-              </header>
-              <div class="max-w-[260px] mx-auto mt-4">
-                <button
-                  type="submit"
-                  class="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors duration-150"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex justify-center hidden">
-            <div
-              class="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10 rounded-xl shadow"
-            >
-              <header class="mb-8">
-                <h1 class="text-2xl font-bold mb-1">You are logged in now</h1>
-                <p class="text-[15px] text-slate-500">
-                  for logout you can use below button.
-                </p>
-              </header>
-              <div class="max-w-[260px] mx-auto mt-4">
-                <button
-                  type="submit"
-                  class="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors duration-150"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <script src="{% static 'otp-input.js' %}"></script>
         </div>
+
+
+          <div id="first-page" class="flex justify-center">
+            <div
+              class="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10 rounded-xl shadow"
+            >
+              <header class="mb-8">
+                <h1 class="text-2xl font-bold mb-1">Welcome</h1>
+                <p class="text-[15px] text-slate-500">
+                  this is a simple django project you can use otp code for login.
+                </p>
+              </header>
+              <div class="max-w-[260px] mx-auto mt-4">
+                <p class="text-[15px] text-slate-500 mt-4">
+                  you want login ? use below button.
+                </p>
+                <button
+                  id="dashboard-prime"
+                  class="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring mt-5 focus-visible:ring-indigo-300 transition-colors duration-150"
+                >
+                  login
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="phone-page" class="flex justify-center hidden">
+            <div
+              class="max-w-md mx-auto text-center bg-white px-4 sm:px-8 py-10 rounded-xl shadow"
+            >
+              <header class="mb-8">
+                <h1 class="text-2xl font-bold mb-1">Login Page</h1>
+                <p class="text-[15px] text-slate-500">
+                  enter your phone number for login !
+                </p>
+              </header>
+              <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
+                  phone number
+                </label>
+                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="text" placeholder="9xxxxxxxxx">
+                <p class="text-red-500 text-xs italic">Please enter valid phone number.</p>
+              </div>
+              <div class="max-w-[260px] mx-auto mt-4">
+                <button
+                  id="login-phone"
+                  class="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-indigo-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring mt-5 focus-visible:ring-indigo-300 transition-colors duration-150"
+                >
+                  send code
+                </button>
+              </div>
+            </div>
+          </div>
+{% endif %}
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+
+
+                const firstPage = document.getElementById("first-page");
+  const secondPage = document.getElementById("phone-page");
+  const thirdPage = document.getElementById("code-page");
+
+  const firstBtn = document.getElementById("dashboard-prime");
+  const secondBtn = document.getElementById("login-phone");
+  const thirdBtn = document.getElementById("login-btn");
+
+
+
+  firstBtn.addEventListener("click", function () {
+    firstPage.classList.add("hidden");
+    secondPage.classList.remove("hidden");
+  });
+
+  const phoneNumber = document.getElementById("phone");
+  secondBtn.addEventListener("click", function(){
+    console.log('after click in login');
+
+
+    var url = "{% url 'get-code' %}";
+    var pstData = {
+      phone_number: phoneNumber.value,
+    };
+    var fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pstData),
+    };
+
+    fetch(url, fetchOptions).then((response) => {
+      if (response.ok){
+        secondPage.classList.add("hidden");
+        thirdPage.classList.remove("hidden");
+      }
+
+    });
+  })
+  const form = document.getElementById('otp-form');
+                const inputs = [...form.querySelectorAll('input[type=text]')];
+
+  thirdBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    var otp = inputs.map(input => input.value).join('');
+    var url = "{% url 'login' %}";
+    var pstData = {
+      phone_number: phoneNumber.value,
+      otp_code: otp
+    };
+    console.log(pstData);
+
+    var fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pstData),
+    };
+
+    fetch(url, fetchOptions).then((response) => {
+      console.log('after fetch login >>>>>>>>>> show response');
+      console.log(response);
+      if (response.ok){
+
+        location.reload();
+      }
+
+    });
+  })
+
+
+                const handleKeyDown = (e) => {
+                    if (
+                        !/^[0-9]{1}$/.test(e.key)
+                        && e.key !== 'Backspace'
+                        && e.key !== 'Delete'
+                        && e.key !== 'Tab'
+                        && !e.metaKey
+                    ) {
+                        e.preventDefault()
+                    }
+
+                    if (e.key === 'Delete' || e.key === 'Backspace') {
+                        const index = inputs.indexOf(e.target);
+                        if (index > 0) {
+                            inputs[index - 1].value = '';
+                            inputs[index - 1].focus();
+                        }
+                    }
+                }
+
+                const handleInput = (e) => {
+                    const { target } = e
+                    const index = inputs.indexOf(target)
+                    if (target.value) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus()
+                        } else {
+                            thirdBtn.focus()
+                        }
+                    }
+                }
+
+                const handleFocus = (e) => {
+                    e.target.select()
+                }
+
+                const handlePaste = (e) => {
+                    e.preventDefault()
+                    const text = e.clipboardData.getData('text')
+                    if (!new RegExp(`^[0-9]{${inputs.length}}$`).test(text)) {
+                        return
+                    }
+                    const digits = text.split('')
+                    inputs.forEach((input, index) => input.value = digits[index])
+                    thirdBtn.focus()
+                }
+
+                inputs.forEach((input) => {
+                    input.addEventListener('input', handleInput)
+                    input.addEventListener('keydown', handleKeyDown)
+                    input.addEventListener('focus', handleFocus)
+                    input.addEventListener('paste', handlePaste)
+                })
+            })
+        </script>
       </div>
     </main>
 

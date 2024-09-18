@@ -9,25 +9,25 @@ class GetPhoneNumberSerializer(serializers.Serializer):
     """
 
     phone_number = serializers.CharField(
-        max_length=20,
-        validators=[
-            RegexValidator(
-                regex=r"^9\d{9}$",
-                message="Phone number must be in the format 9xxxxxxxxx with up to 10 digits.",
-            ),
-        ],
+        max_length=10,
+        # validators=[
+        #     RegexValidator(
+        #         regex=r"^9\d{9}$",
+        #         message="Phone number must be in the format 9xxxxxxxxx with up to 10 digits.",
+        #     ),
+        # ],
     )
 
 
 class LoginSerializer(serializers.Serializer):
     phone_number = serializers.CharField(
-        max_length=20,
-        validators=[
-            RegexValidator(
-                regex=r"^9\d{9}$",
-                message="Phone number must be in the format 9xxxxxxxxx with up to 10 digits.",
-            ),
-        ],
+        max_length=10,
+        # validators=[
+        #     RegexValidator(
+        #         regex=r"^9\d{9}$",
+        #         message="Phone number must be in the format 9xxxxxxxxx with up to 10 digits.",
+        #     ),
+        # ],
     )
     otp_code = serializers.CharField(max_length=6)
 

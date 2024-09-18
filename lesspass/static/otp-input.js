@@ -1,7 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("hello");
+
   const form = document.getElementById("otp-form");
-  const inputs = [...form.querySelectorAll("input[type=text]")];
+  // const inputs = [...form.querySelectorAll("input[type=text]")];
   const submit = form.querySelector("button[type=submit]");
+
+  const firstPage = document.getElementById("first-page");
+  const secondPage = document.getElementById("phone-page");
+  const thirdPage = document.getElementById("code-page");
+
+  const firstBtn = document.getElementById("dashboard-prime");
+  const secondBtn = document.getElementById("login-phone");
+  const thirdBtn = document.getElementById("login-btn");
+
+  firstBtn.addEventListener("click", function () {
+    firstPage.classList.add("hidden");
+    secondPage.classList.remove("hidden");
+  });
 
   const handleKeyDown = (e) => {
     if (
